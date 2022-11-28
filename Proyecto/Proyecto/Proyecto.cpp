@@ -18,7 +18,7 @@ void gotoxy(int x, int y);  // Posicionamiento del cursor
 int ax[3] = { 0 };          // Tres coordenadas de la cola del avión, global
 int y[3] = { 3,7,11 };      // Método de tabla de consulta global de tres ejes y para determinar la posición del eje y de la aeronave   
                             // Debido a que la distancia de vuelo de la bala de cañón es agregar dos cuadrículas a la vez, el eje y aquí debe ser par para correspondencia impar y par
-int i;                      // Variables de ciclo
+int d;                      // Variables de ciclo
 int fd[3];                  // Controla el tipo de aeronave
 
 void cshcxhs()                              // función de inicialización
@@ -63,33 +63,33 @@ void cshcxhs()                              // función de inicialización
 
 void hcfjhs()                       // Dibuja la función de avión
 {
-    gotoxy(ax[i], y[i]);            // Primero da salida a la aeronave completa en la cola de la aeronave
+    gotoxy(ax[d], y[d]);            // Primero da salida a la aeronave completa en la cola de la aeronave
 
-    if (fd[i] == 1)
+    if (fd[d] == 1)
         printf("|---0>");
     else
         printf(">>>>>>");
 
-    gotoxy(ax[i] - 1, y[i]);        // Eliminar rastros que quedan detrás del avión
+    gotoxy(ax[d] - 1, y[d]);        // Eliminar rastros que quedan detrás del avión
     printf(" ");
 
-    ax[i]++;                        // Luego, las coordenadas de la cola del avión aumentarán automáticamente, y la próxima vez saldrá todo el plano desde la cola del avión.
+    ax[d]++;                        // Luego, las coordenadas de la cola del avión aumentarán automáticamente, y la próxima vez saldrá todo el plano desde la cola del avión.
 }
 
 void dhpdxshs()                    // Dibuja el avión y deja que desaparezca al volar sobre x94
 {
-    for (i = 0; i < 3; i++)         // Cada avión da un paso
+    for (d = 0; d < 3; d++)         // Cada avión da un paso
     {
         hcfjhs();
 
-        if (ax[i] + 6 >= 94)        // Determine si cada cabeza de avión excede 94
+        if (ax[d] + 6 >= 94)        // Determine si cada cabeza de avión excede 94
         {
-            gotoxy(94, y[i]);       // Cumple la condición de salida de espacios en 94 lugares de cada avión
+            gotoxy(94, y[d]);       // Cumple la condición de salida de espacios en 94 lugares de cada avión
             printf("      ");
-            if (ax[i] + 6 > 100)      // La cabeza de cada avión supera los 100, luego restablece un número aleatorio
+            if (ax[d] + 6 > 100)      // La cabeza de cada avión supera los 100, luego restablece un número aleatorio
             {
-                ax[i] = rand() % R; // Modificar a un número aleatorio menor que R
-                fd[i] = rand() % 2;
+                ax[d] = rand() % R; // Modificar a un número aleatorio menor que R
+                fd[d] = rand() % 2;
             }
         }
     }
@@ -198,11 +198,11 @@ int score;                  //Puntuación
 void pdfsjzhs()             // determina si golpear y estadísticas
 {
 
-    for (i = 0; i < 3; i++)
+    for (d = 0; d < 3; d++)
     {
-        if (shells_x >= ax[i] && shells_x <= ax[i] + 6 && shells_y == y[i])// Cuando se golpea
+        if (shells_x >= ax[d] && shells_x <= ax[d] + 6 && shells_y == y[d])// Cuando se golpea
         {
-            if (fd[i] == 1)
+            if (fd[d] == 1)
                 score++;                        // Un golpe, más un puntaje
             else
             {
@@ -213,11 +213,11 @@ void pdfsjzhs()             // determina si golpear y estadísticas
 
             rtde = 0;                       // Cuando golpeas, el disparo está completo
 
-            gotoxy(ax[i] - 1, y[i]);          // Después de golpear, elimina el plano en la cola del plano original
+            gotoxy(ax[d] - 1, y[d]);          // Después de golpear, elimina el plano en la cola del plano original
             printf("      ");
 
-            ax[i] = rand() % R;             // Modificar a un número aleatorio menor que 10
-            fd[i] = rand() % 2;             // El tipo de aeronave ha cambiado
+            ax[d] = rand() % R;             // Modificar a un número aleatorio menor que 10
+            fd[d] = rand() % 2;             // El tipo de aeronave ha cambiado
 
             gotoxy(shells_x, shells_y);     // Salida de un espacio donde el avión golpea para eliminar los proyectiles
             printf(" ");
