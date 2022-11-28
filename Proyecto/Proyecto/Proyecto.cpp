@@ -34,7 +34,7 @@ void cshcxhs()                              // función de inicialización
     gotoxy(26, 16);
     printf("Golpea un avión enemigo | --- 0> Agrega un punto, golpea un avión amigo >>>>>> Reduce un punto");
     gotoxy(40, 18);
-    printf("Puntuación acumulativa% d final del juego", N);
+    printf("Puntuación obtenida% d Game Over", N);
     Sleep(2800);
 
     system("cls");
