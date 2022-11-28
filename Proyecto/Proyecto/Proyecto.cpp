@@ -12,7 +12,7 @@
 void HideCursor();          // Ocultar el cursor
 void gotoxy(int x, int y);  // Posicionamiento del cursor
 
-#define R 26                // El valor máximo de la coordenada x aleatoria de la aeronave cada vez
+#define D 26                // El valor máximo de la coordenada x aleatoria de la aeronave cada vez
 #define N 20                // Puntuación aduanera
 
 int df[3] = { 0 };          // Tres coordenadas de la cola del avión, global
@@ -40,11 +40,11 @@ void cshcxhs()                              // función de inicialización
     system("cls");
 
     int a;                                  // Variables de ciclo
-    gotoxy(40, R);                          // Inicializa la batería
+    gotoxy(40, D);                          // Inicializa la batería
     for (a = 0; a < 17; a++)
         printf("_");
 
-    gotoxy(46, R);
+    gotoxy(46, D);
     printf("[_O_]");
     gotoxy(48, 25);                         // Medio x: 48
     printf("|");
@@ -53,11 +53,11 @@ void cshcxhs()                              // función de inicialización
     srand((unsigned)time(NULL));            // Inicializar semilla aleatoria
     for (e = 0; e < 3; e++)                 // Inicializa la coordenada x inicial de la aeronave, escrita fuera del bucle
     {
-        df[e] = rand() % R;
+        df[e] = rand() % D;
         fd[e] = rand() % 2;
     }
 
-    gotoxy(0, R);
+    gotoxy(0, D);
     printf("  User Score :");                    // fracción x coordenada 9
 }
 
@@ -88,7 +88,7 @@ void dhpdxshs()                    // Dibuja el avión y deja que desaparezca al
             printf("      ");
             if (df[d] + 6 > 100)      // La cabeza de cada avión supera los 100, luego restablece un número aleatorio
             {
-                df[d] = rand() % R; // Modificar a un número aleatorio menor que R
+                df[d] = rand() % D; // Modificar a un número aleatorio menor que R
                 fd[d] = rand() % 2;
             }
         }
@@ -216,7 +216,7 @@ void pdfsjzhs()             // determina si golpear y estadísticas
             gotoxy(df[d] - 1, y[d]);          // Después de golpear, elimina el plano en la cola del plano original
             printf("      ");
 
-            df[d] = rand() % R;             // Modificar a un número aleatorio menor que 10
+            df[d] = rand() % D;             // Modificar a un número aleatorio menor que 10
             fd[d] = rand() % 2;             // El tipo de aeronave ha cambiado
 
             gotoxy(shells_x, shells_y);     // Salida de un espacio donde el avión golpea para eliminar los proyectiles
@@ -226,7 +226,7 @@ void pdfsjzhs()             // determina si golpear y estadísticas
         }
     }
 
-    gotoxy(9, R);
+    gotoxy(9, D);
     printf("%d", score);
 
     if (score >= N)         //El juego ha terminado
