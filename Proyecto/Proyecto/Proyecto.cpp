@@ -15,7 +15,7 @@ void gotoxy(int x, int y);  // Posicionamiento del cursor
 #define R 26                // El valor máximo de la coordenada x aleatoria de la aeronave cada vez
 #define N 20                // Puntuación aduanera
 
-int ax[3] = { 0 };          // Tres coordenadas de la cola del avión, global
+int df[3] = { 0 };          // Tres coordenadas de la cola del avión, global
 int y[3] = { 3,7,11 };      // Método de tabla de consulta global de tres ejes y para determinar la posición del eje y de la aeronave   
                             // Debido a que la distancia de vuelo de la bala de cañón es agregar dos cuadrículas a la vez, el eje y aquí debe ser par para correspondencia impar y par
 int d;                      // Variables de ciclo
@@ -53,7 +53,7 @@ void cshcxhs()                              // función de inicialización
     srand((unsigned)time(NULL));            // Inicializar semilla aleatoria
     for (e = 0; e < 3; e++)                 // Inicializa la coordenada x inicial de la aeronave, escrita fuera del bucle
     {
-        ax[e] = rand() % R;
+        df[e] = rand() % R;
         fd[e] = rand() % 2;
     }
 
@@ -63,17 +63,17 @@ void cshcxhs()                              // función de inicialización
 
 void hcfjhs()                       // Dibuja la función de avión
 {
-    gotoxy(ax[d], y[d]);            // Primero da salida a la aeronave completa en la cola de la aeronave
+    gotoxy(df[d], y[d]);            // Primero da salida a la aeronave completa en la cola de la aeronave
 
     if (fd[d] == 1)
         printf("|---0>");
     else
         printf(">>>>>>");
 
-    gotoxy(ax[d] - 1, y[d]);        // Eliminar rastros que quedan detrás del avión
+    gotoxy(df[d] - 1, y[d]);        // Eliminar rastros que quedan detrás del avión
     printf(" ");
 
-    ax[d]++;                        // Luego, las coordenadas de la cola del avión aumentarán automáticamente, y la próxima vez saldrá todo el plano desde la cola del avión.
+    df[d]++;                        // Luego, las coordenadas de la cola del avión aumentarán automáticamente, y la próxima vez saldrá todo el plano desde la cola del avión.
 }
 
 void dhpdxshs()                    // Dibuja el avión y deja que desaparezca al volar sobre x94
@@ -82,13 +82,13 @@ void dhpdxshs()                    // Dibuja el avión y deja que desaparezca al
     {
         hcfjhs();
 
-        if (ax[d] + 6 >= 94)        // Determine si cada cabeza de avión excede 94
+        if (df[d] + 6 >= 94)        // Determine si cada cabeza de avión excede 94
         {
             gotoxy(94, y[d]);       // Cumple la condición de salida de espacios en 94 lugares de cada avión
             printf("      ");
-            if (ax[d] + 6 > 100)      // La cabeza de cada avión supera los 100, luego restablece un número aleatorio
+            if (df[d] + 6 > 100)      // La cabeza de cada avión supera los 100, luego restablece un número aleatorio
             {
-                ax[d] = rand() % R; // Modificar a un número aleatorio menor que R
+                df[d] = rand() % R; // Modificar a un número aleatorio menor que R
                 fd[d] = rand() % 2;
             }
         }
@@ -200,7 +200,7 @@ void pdfsjzhs()             // determina si golpear y estadísticas
 
     for (d = 0; d < 3; d++)
     {
-        if (shells_x >= ax[d] && shells_x <= ax[d] + 6 && shells_y == y[d])// Cuando se golpea
+        if (shells_x >= df[d] && shells_x <= df[d] + 6 && shells_y == y[d])// Cuando se golpea
         {
             if (fd[d] == 1)
                 score++;                        // Un golpe, más un puntaje
@@ -213,7 +213,7 @@ void pdfsjzhs()             // determina si golpear y estadísticas
 
             rtde = 0;                       // Cuando golpeas, el disparo está completo
 
-            gotoxy(ax[d] - 1, y[d]);          // Después de golpear, elimina el plano en la cola del plano original
+            gotoxy(df[d] - 1, y[d]);          // Después de golpear, elimina el plano en la cola del plano original
             printf("      ");
 
             ax[d] = rand() % R;             // Modificar a un número aleatorio menor que 10
