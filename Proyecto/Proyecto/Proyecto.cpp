@@ -58,7 +58,7 @@ void cshcxhs()                              // función de inicialización
     }
 
     gotoxy(0, R);
-    printf("  Puntuación:");                    // fracción x coordenada 9
+    printf("  User Score :");                    // fracción x coordenada 9
 }
 
 void hcfjhs()                       // Dibuja la función de avión
