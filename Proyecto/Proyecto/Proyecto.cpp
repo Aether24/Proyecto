@@ -49,12 +49,12 @@ void cshcxhs()                              // función de inicialización
     gotoxy(48, 25);                         // Medio x: 48
     printf("|");
 
-    int f;
+    int e;
     srand((unsigned)time(NULL));            // Inicializar semilla aleatoria
-    for (f = 0; f < 3; f++)                 // Inicializa la coordenada x inicial de la aeronave, escrita fuera del bucle
+    for (e = 0; e < 3; e++)                 // Inicializa la coordenada x inicial de la aeronave, escrita fuera del bucle
     {
-        ax[f] = rand() % R;
-        fd[f] = rand() % 2;
+        ax[e] = rand() % R;
+        fd[e] = rand() % 2;
     }
 
     gotoxy(0, R);
