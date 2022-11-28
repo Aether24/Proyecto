@@ -23,7 +23,7 @@ int fd[3];                  // Controla el tipo de aeronave
 
 void cshcxhs()                              // función de inicialización
 {
-    system("Air combat ");           //título
+    system("Air combat epic");           //título
     system("mode con cols=100 lines=30");   // Ancho 100, altura 30
     HideCursor();                           // Ocultar el cursor
 
