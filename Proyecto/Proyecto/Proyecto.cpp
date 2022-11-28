@@ -28,7 +28,7 @@ void cshcxhs()                              // función de inicialización
     HideCursor();                           // Ocultar el cursor
 
     gotoxy(46, 12);                         // Introduce las reglas del juego
-    printf("reglas del juego:");
+    printf("rule games :");
     gotoxy(36, 14);
     printf("Wad key para controlar la dirección, barra espaciadora para lanzar proyectiles");
     gotoxy(26, 16);
