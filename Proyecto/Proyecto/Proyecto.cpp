@@ -39,9 +39,9 @@ void cshcxhs()                              // función de inicialización
 
     system("cls");
 
-    int k;                                  // Variables de ciclo
+    int a;                                  // Variables de ciclo
     gotoxy(40, R);                          // Inicializa la batería
-    for (k = 0; k < 17; k++)
+    for (a = 0; a < 17; a++)
         printf("_");
 
     gotoxy(46, R);
